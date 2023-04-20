@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spinner</title>
+    <style>
+        @keyframes spin {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 99px;
+
+            animation: spin 3s linear infinite;
+            animation-play-state: paused;
+        }
+    </style>
+    <script>
+        function toggleRotation(element) {
+            let style = document.querySelector('h1').style;
+            if(style.animationPlayState === 'paused') {
+                style.animationPlayState = 'running';
+                element.innerText = 'Stop rotating';
+            } else {
+                style.animationPlayState = 'paused';
+                element.innerText = 'Start rotating';
+            }
+        }
+    </script>
+</head>
+<body>
+    <button onclick="toggleRotation(this)">Start rotating</button>
+    <h1>↻</h1>
+</body>
+</html>

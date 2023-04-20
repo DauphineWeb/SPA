@@ -6,24 +6,57 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Animate</title>
     <style>
+        body {
+            max-width: 800px;
+            margin: 30px auto;
+        }
+
         @keyframes grow {
             from {
                 font-size: 20px;
+                color: #010101;
             }
             to {
                 font-size: 100px;
+                color: #e4baf8;
+            }
+        }
+
+        @keyframes slideIn {
+            0% {
+                opacity: 0;
+                transform: translateY(-40px) translateX(-100px);
+            }
+
+            40% {
+                opacity: 1;
+                transform: translateY(-40px) translateX(0px);
+            }
+
+            100% {
+                transform: translateY(0px) translateX(0px);
             }
         }
 
         h1 {
-            animation-name: grow;
+            animation: grow 2s ease-out both;
+            /* animation-name: grow;
             animation-duration: 2s;
-            animation-fill-mode: forwards;
+            animation-timing-function: ease-out;
+            animation-delay: 1s;
+            animation-fill-mode: both;
+            animation-direction: reverse;
+            animation-iteration-count: infinite; */
+        }
+
+        h2 {
+            animation: slideIn 1s both;
         }
     </style>
 </head>
 <body>
-    <h1>Welcome!</h1>
+    <!-- <h1>Welcome!</h1> -->
+    <h2>This page has some neat animations</h2>
 </body>
 </body>
 </html>

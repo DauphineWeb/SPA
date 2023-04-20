@@ -9,6 +9,32 @@ h1 {
     text-align: center;
 }
 
+@keyframes hideQuote {
+    0% {
+        opacity: 1;
+        margin-bottom: 50px;
+        padding: 5px;
+        height: 100%;
+        max-height: 300px;
+    }
+
+    40% {
+        opacity: 0;
+        margin-bottom: 50px;
+        padding: 5px;
+        height: 100%;
+        max-height: 300px;
+    }
+
+    100% {
+        opacity: 0;
+        margin-bottom: 0px;
+        padding: 0px;
+        height: 0%;
+        max-height: 0px;
+    }
+}
+
 .quote {
     position: relative;
     border: 1px solid #BBB;
@@ -17,6 +43,10 @@ h1 {
     box-shadow: 5px 5px 2px 1px #EAEAEA;
     margin-bottom: 50px;
     padding: 5px;
+    overflow-y: scroll;
+
+    animation: hideQuote 1s forwards;
+    animation-play-state: paused;
 }
 
 .quote > p {
@@ -28,4 +58,36 @@ h1 {
     color: #AEAEAE;
     font-style: italic;
     font-size: 12px;
+}
+
+.quote-actions {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.love, .hide {
+    display: inline-block;
+    margin-left: 10px;
+    font-size: 20px;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.love:hover {
+    color: #9d3232;
+    transform: scale(1.1);
+}
+
+.hide:hover {
+    color: #3b95ab;
+    transform: rotate(10deg);
+}
+
+.love::after {
+    content: '♥';
+}
+
+.hide::after {
+    content: '🅧';
 }

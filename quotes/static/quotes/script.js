@@ -1,7 +1,9 @@
 let quoteContainer;
+let offset = 0;
+const limit = 20;
 
 function fetchQuotes() {
-    fetch('fetch-quotes').then(response => {
+    fetch('fetch-quotes/?offset=' + offset + '&limit=' + limit).then(response => {
         if(response.ok) {
             return response.json();
         } else {
@@ -16,16 +18,40 @@ function fetchQuotes() {
             <hr>
             <p>${quote.content}</p>
             <p>${quote.category}</p>
+            <div class="quote-actions"><div class="love"></div><div class="hide"></div></div>
             `
     
             quoteContainer.appendChild(element);
         });
+
+        offset += limit;
     });
-
-
 }
+
+function userReachedBottom() {
+    return window.scrollY + window.innerHeight >= document.body.offsetHeight - 25;
+}
+
 
 document.addEventListener('DOMContentLoaded', function() {
     quoteContainer = document.querySelector('.quote-container');
+
+    document.onclick = function(event) {
+        let element = event.target;
+        if(element.className === 'hide') {
+            let quoteElement = element.parentElement.parentElement;
+            quoteElement.style.animationPlayState = 'running';
+            quoteElement.addEventListener('animationend', function() {
+                quoteElement.remove();
+            });
+        }
+    }
+
+    window.onscroll = function(event) {
+        if(userReachedBottom()) {
+            fetchQuotes();
+        }
+    }
+
     fetchQuotes();
 });

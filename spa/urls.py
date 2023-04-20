@@ -21,4 +21,5 @@ urlpatterns = [
     path('lorem/', include('lorem.urls')),
     path('quotes/', include('quotes.urls')),
     path('animate/', include('animate.urls')),
+    path('react/', include('react.urls')),
 ]

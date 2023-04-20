@@ -8,7 +8,9 @@ def index(request):
     return render(request, 'quotes/index.html')
 
 def quotes_json(request):
-    quotes = Quote.objects.select_related('author').prefetch_related('categories')[:20]
+    offset = int(request.GET.get('offset', 0))
+    limit = int(request.GET.get('limit', 20))
+    quotes = Quote.objects.select_related('author').prefetch_related('categories')[offset:offset + limit]
 
     quote_list = []
 
